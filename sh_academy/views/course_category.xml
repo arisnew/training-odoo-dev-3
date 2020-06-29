@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <data>
+    <!-- Add you code here -->
+    <!-- sh.academy.course_category action window -->
+    <record id="sh_academy_course_category_action" model="ir.actions.act_window">
+      <field name="name">Course Category</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sh.academy.course.category</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_type">form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          <!-- Add Text Here -->
+        </p><p>
+          <!-- More details about what a user can do with this object will be OK --> 
+        </p>
+      </field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="sh_course_category_menu_act" name="Course Category" parent="sh_master_data_menu_categ" action="sh_academy_course_category_action" sequence="5"/>
+
+    <!-- sh.academy.course_category tree view -->
+    <record id="sh_academy_course_category_view_tree" model="ir.ui.view">
+      <field name="name">sh.academy.course.category.view.tree</field>
+      <field name="model">sh.academy.course.category</field>
+      <field name="arch" type="xml">
+        <tree>
+          <!-- Add your fields here -->
+          <field name="name"/>
+          <field name="description"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- sh.academy.course_category form view -->
+	<record id="sh_academy_course_category_view_form" model="ir.ui.view">
+		<field name="name">sh.academy.course.category.view.form</field>
+		<field name="model">sh.academy.course.category</field>
+		<field name="arch" type="xml">
+			<form string="Course">
+				<sheet>
+					<group>
+						<!-- Add your fields here -->
+						<group>
+							<field name="name"/>
+						</group>
+						<group>
+							<field name="active"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Description" name="description">
+							<group>
+								<field name="description"/>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- sh.academy.course_category search view -->
+	<record id="sh_academy_course_category_view_search" model="ir.ui.view">
+		<field name="name">sh.academy.course.category.view.search</field>
+		<field name="model">sh.academy.course.category</field>
+		<field name="arch" type="xml">
+			<search string="Search Description">
+				<!-- Add your fields here -->
+				<field name="name"/>
+				<field name="description"/>
+			</search>
+		</field>
+	</record>
+
+  </data>
+</odoo>
