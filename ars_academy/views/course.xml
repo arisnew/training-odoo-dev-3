@@ -29,6 +29,7 @@
 				<tree>
 					<!-- Add your fields here -->
 					<field name="name"/>
+					<field name="category_id"/>
 					<field name="description"/>
 					<field name="active"/>
 				</tree>
@@ -45,6 +46,7 @@
 						<group>
 							<group>
 								<field name="name"/>
+								<field name="category_id"/>
 							</group>
 							<group>
 								<field name="active"/>
@@ -69,9 +71,18 @@
 					<!-- Add your fields here -->
 					<field name="name"/>
 					<field name="description"/>
+					<field name="category_id"/>
 
 					<filter string="Active" name="is_active" domain="[('active','=',True)]"/>
 					<filter string="PHP" name="seperti_php" domain="[('name','ilike','php')]"/>
+
+					<group expand="0" name="group_by" string="Group By">
+                       <filter name="kategori" 
+						string="Category" 
+						domain="[]" 
+						context="{'group_by' : 'category_id'}"/>
+                       
+                   </group>
 				</search>
 			</field>
 		</record>

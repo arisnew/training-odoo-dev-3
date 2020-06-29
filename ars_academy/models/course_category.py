@@ -2,11 +2,11 @@ from odoo import api, fields, models
 
 
 class Course(models.Model):
-    _name = 'ars.academy.course'
-    _description = 'Master Data Course'
+    _name = 'ars.academy.course.category'
+    _description = 'Master Data Course Category'
 
     name = fields.Char(
-        string='Course Name',
+        string='Category Name',
         required=True,
     )
     
@@ -18,10 +18,4 @@ class Course(models.Model):
         string='Active', 
         default=True,
     )
-
-    category_id = fields.Many2one(
-        comodel_name='ars.academy.course.category', 
-        string='Category',
-    )
-    
     
