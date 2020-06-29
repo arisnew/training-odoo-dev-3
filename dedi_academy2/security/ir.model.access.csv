@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_dedi_academy2_dedi_academy2,dedi_academy2.dedi_academy2,model_dedi_academy2_dedi_academy2,,1,0,0,0
+access_dedi_academy2_course,dedi_academy2_course,model_dedi_academy2_course,,1,1,1,1
+access_dedi_academy2_course_category,access_dedi_academy2_course_category,model_dedi_academy2_course_category,,1,1,1,1
