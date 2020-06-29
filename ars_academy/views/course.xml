@@ -1,29 +1,63 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-  <data>
-    <!-- Add you code here -->
-    <!-- ars.academy.course action window -->
-    <record id="ars_academy_course_action" model="ir.actions.act_window">
-      <field name="name">Course</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">ars.academy.course</field>
-      <field name="view_mode">tree,form</field>
-      <field name="view_type">form</field>
-      <field name="help" type="html">
-        <p class="oe_view_nocontent_create">
-          <!-- Add Text Here -->
-        </p><p>
-          <!-- More details about what a user can do with this object will be OK --> 
-        </p>
-      </field>
-    </record>
+	<data>
+		<!-- ars.academy.course action window -->
+		<record id="ars_academy_course_action" model="ir.actions.act_window">
+			<field name="name">Course</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">ars.academy.course</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_type">form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					<!-- Add Text Here -->
+				</p>
+				<p>
+					<!-- More details about what a user can do with this object will be OK -->
+				</p>
+			</field>
+		</record>
 
+		<!-- This Menu Item must have a parent and an action -->
+		<menuitem id="ars_course_menu_act" name="Course" parent="ars_master_data_menu_categ" action="ars_academy_course_action" sequence="10"/>
 
-    <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="ars_course_menu_act" 
-      name="Course" 
-      parent="ars_master_data_menu_categ" 
-      action="ars_academy_course_action" 
-      sequence="10"/>
-  </data>
+		<!-- ars.academy.course tree view -->
+		<record id="ars_academy_course_view_tree" model="ir.ui.view">
+			<field name="name">ars.academy.course.view.tree</field>
+			<field name="model">ars.academy.course</field>
+			<field name="arch" type="xml">
+				<tree>
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="description"/>
+					<field name="active"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- ars.academy.course form view -->
+		<record id="ars_academy_course_view_form" model="ir.ui.view">
+			<field name="name">ars.academy.course.view.form</field>
+			<field name="model">ars.academy.course</field>
+			<field name="arch" type="xml">
+				<form string="Course">
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+							</group>
+							<group>
+								<field name="active"/>
+							</group>
+						</group>
+						<notebook>
+							<page string="Description" name="description">
+								<field name="description"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
 </odoo>
