@@ -59,5 +59,21 @@
 				</form>
 			</field>
 		</record>
+
+		<!-- ars.academy.course search view -->
+		<record id="ars_academy_course_view_search" model="ir.ui.view">
+			<field name="name">ars.academy.course.view.search</field>
+			<field name="model">ars.academy.course</field>
+			<field name="arch" type="xml">
+				<search string="Search Description">
+					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="description"/>
+
+					<filter string="Active" name="is_active" domain="[('active','=',True)]"/>
+					<filter string="PHP" name="seperti_php" domain="[('name','ilike','php')]"/>
+				</search>
+			</field>
+		</record>
 	</data>
 </odoo>
