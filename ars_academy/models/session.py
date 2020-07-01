@@ -3,28 +3,33 @@ from odoo import api, fields, models, exceptions
 class Session(models.Model):
     _name = 'ars.academy.session'
     _description = 'Data Session'
+    _inherit = 'mail.thread'
 
     name = fields.Char(
         string='Session Name',
         required = True,
+        track_visibility='onchange',
     )
 
     instructor_id = fields.Many2one(
         comodel_name='res.partner', 
         string='Instructor',
         domain = [('is_instructor', '=', True)],
+        track_visibility='onchange',
     )
 
     course_id = fields.Many2one(
         comodel_name='ars.academy.course', 
         string='Course',
         required = True,
+        track_visibility='onchange',
     )
 
     session_date = fields.Datetime(
         string='Session date',
         default = fields.Datetime.now,
         required = True,
+        track_visibility='onchange',
     )
 
     description = fields.Text(
@@ -41,6 +46,7 @@ class Session(models.Model):
         string='Minimum Attendee',
         default = 0,
         required = True,
+        track_visibility='onchange',
     )
     
     taken_seats = fields.Float(

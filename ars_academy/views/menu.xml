@@ -4,7 +4,8 @@
         <!-- Add you code here -->
         <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
         <menuitem id="ars_academy_menu_root" 
-            name="Academy" 
+            name="Academy"
+            web_icon="ars_academy,static/description/icon.png"
             sequence="20"/>
         
         <!-- This Menu Item Must have a parent -->
