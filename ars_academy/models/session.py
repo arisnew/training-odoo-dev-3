@@ -37,6 +37,25 @@ class Session(models.Model):
         inverse_name='session_id', 
         string='Attendees',
     )
+
+    min_attendee = fields.Integer(
+        string='Minimum Attendee',
+        default = 0,
+        required = True,
+    )
+    
+    taken_seats = fields.Float(
+        string="Taken seats",
+        compute='_taken_seats',
+    )
+
+    @api.depends('min_attendee', 'attendee_ids')
+    def _taken_seats(self):
+        for r in self:
+            if not r.min_attendee:
+                r.taken_seats = 0.0
+            else:
+                r.taken_seats = 100.0 * len(r.attendee_ids) / r.min_attendee
         
     
 class Attendee(models.Model):
