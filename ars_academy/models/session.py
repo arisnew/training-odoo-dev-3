@@ -1,5 +1,4 @@
-from odoo import api, fields, models
-
+from odoo import api, fields, models, exceptions
 
 class Session(models.Model):
     _name = 'ars.academy.session'
@@ -47,6 +46,7 @@ class Session(models.Model):
     taken_seats = fields.Float(
         string="Taken seats",
         compute='_taken_seats',
+        store=True,
     )
 
     @api.depends('min_attendee', 'attendee_ids')
@@ -56,7 +56,14 @@ class Session(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.min_attendee
-        
+
+    @api.constrains('instructor_id', 'attendee_ids')
+    def _check_instructor_not_in_attendees(self):
+        for r in self:
+            person = [x.student_id.id for x in r.attendee_ids]
+            if r.instructor_id and r.instructor_id.id in person:
+                raise exceptions.ValidationError("A session's instructor can't be an attendee")
+
     
 class Attendee(models.Model):
     _name = 'ars.academy.attendee'
@@ -84,3 +91,9 @@ class Attendee(models.Model):
         domain = [('is_student', '=', True)],
         required = True,
     )
+    
+    _sql_constraints = [
+        ('name_unique',
+         'UNIQUE(name)',
+         "No Registrasi harus unik!!"),
+    ]
