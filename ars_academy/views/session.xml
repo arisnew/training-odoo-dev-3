@@ -13,6 +13,7 @@
                     <field name="session_date"/>
                     <field name="taken_seats" widget="progressbar"/>
                     <field name="description"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -23,15 +24,48 @@
             <field name="model">ars.academy.session</field>
             <field name="arch" type="xml">
                 <form string="">
+                    <header>
+                        <button name="action_confirm" 
+                            id="action_confirm"
+                            string="Confirm" 
+                            class="btn-primary" 
+                            type="object"
+                            attrs="{'invisible':[('state', '!=', 'draft')]}"
+                        />
+
+                        <button name="action_done" 
+                            id="action_done"
+                            string="Done" 
+                            class="btn-primary" 
+                            type="object"
+                            attrs="{'invisible':[('state', '!=', 'confirm')]}"
+                        />
+
+                        <button name="action_cancel" 
+                            id="action_cancel"
+                            string="Cancel" 
+                            type="object"
+                            confirm="Yakin akan cancel data ini??"
+                            attrs="{'invisible':[('state', '!=', 'done')]}"
+                        />
+
+                        <button name="action_draft" 
+                            id="action_draft"
+                            string="Reset to Draft" 
+                            type="object"
+                            attrs="{'invisible':[('state', '!=', 'cancel')]}"
+                        />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
-                                <field name="name"/>
-                                <field name="course_id"/>
-                                <field name="instructor_id"/>
+                                <field name="name" attrs="{'readonly': [('state','in',['confirm','done','cancel'])]}"/>
+                                <field name="course_id" attrs="{'readonly': [('state','in',['confirm','done','cancel'])]}"/>
+                                <field name="instructor_id" attrs="{'readonly': [('state','in',['confirm','done','cancel'])]}"/>
                             </group>
                             <group>
-                                <field name="session_date"/>
+                                <field name="session_date" attrs="{'readonly': [('state','in',['confirm','done','cancel'])]}"/>
                                 <field name="min_attendee"/>
                                 <field name="taken_seats"/>
                             </group>

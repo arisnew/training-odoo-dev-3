@@ -63,7 +63,39 @@ class Session(models.Model):
             person = [x.student_id.id for x in r.attendee_ids]
             if r.instructor_id and r.instructor_id.id in person:
                 raise exceptions.ValidationError("A session's instructor can't be an attendee")
+    
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirm', 'Confirmed'),
+        ('done', 'Done'),
+        ('cancel', 'Cancelled'),
+        ], 
+        string='Status', 
+        readonly=True, 
+        copy=False, 
+        index=True, 
+        default='draft',
+    )
 
+    @api.multi
+    def action_confirm(self):
+        self.state = 'confirm'
+        return True
+    
+    @api.multi
+    def action_done(self):
+        self.state = 'done'
+        return True
+
+    @api.multi
+    def action_cancel(self):
+        self.state = 'cancel'
+        return True
+
+    @api.multi
+    def action_draft(self):
+        self.state = 'draft'
+        return True
     
 class Attendee(models.Model):
     _name = 'ars.academy.attendee'
@@ -91,7 +123,7 @@ class Attendee(models.Model):
         domain = [('is_student', '=', True)],
         required = True,
     )
-    
+
     _sql_constraints = [
         ('name_unique',
          'UNIQUE(name)',
