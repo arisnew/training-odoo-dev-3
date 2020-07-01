@@ -29,6 +29,7 @@
         'views/course.xml',
         'views/course_category.xml',
         'views/partner.xml',
+        'views/session.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

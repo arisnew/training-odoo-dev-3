@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_ars_academy_course,access_ars_academy_course,model_ars_academy_course,,1,1,1,1
 access_ars_academy_course_category,access_ars_academy_course_category,model_ars_academy_course_category,,1,1,1,1
+access_ars_academy_session,access_ars_academy_session,model_ars_academy_session,,1,1,1,1
