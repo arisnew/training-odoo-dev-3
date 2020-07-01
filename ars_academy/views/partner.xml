@@ -52,5 +52,27 @@
             parent="ars_master_data_menu_categ" 
             action="student_window_action" 
             sequence="200"/>
+
+        <!-- res.partner action window -->
+        <record id="instructor_window_action" model="ir.actions.act_window">
+            <field name="name">Instructor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="context">{
+                'search_default_instructor' : 1,
+                'default_is_instructor' : True,
+            }</field>
+        </record>
+
+        
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="instructor_menu_act" 
+            name="Instructor" 
+            parent="ars_master_data_menu_categ" 
+            action="instructor_window_action" 
+            sequence="300"/>
     </data>
 </odoo>
