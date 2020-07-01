@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <report
+        id="report_session"
+        model="ars.academy.session"
+        string="Session Report"
+        name="ars_academy.report_session_view"
+        file="ars_academy.report_session_view"
+        report_type="qweb-pdf" />
+
+    <template id="report_session_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 t-field="doc.name"/>
+                        <h2><small>Session Report</small></h2>
+                        <dl class="dl dl-horizontal">
+                            <dt>Course </dt>
+                            <dd><span t-field="doc.name"/></dd>
+                            <dt>Instructor </dt>
+                            <dd><span t-field="doc.instructor_id"/></dd>
+                            <dt>Session Date </dt>
+                            <dd><span t-field="doc.session_date"/></dd>
+                        </dl>
+                        <hr/>
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Reg. No</th>
+                                    <th>Student Name</th>
+                                    <th>Reg. Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="doc.attendee_ids">
+                                    <tr t-foreach="doc.attendee_ids" t-as="det">
+                                        <td>#</td>
+                                        <td><span t-field="det.name"/></td>
+                                        <td><span t-field="det.student_id"/></td>
+                                        <td><span t-field="det.reg_date"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
