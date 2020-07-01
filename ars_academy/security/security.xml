@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <record id="group_manager_ars_academy" model="res.groups">
+            <field name="name">ARS Academy Manager</field>
+        </record>
+        
+        <record id="group_user_ars_academy" model="res.groups">
+            <field name="name">ARS Academy User</field>
+        </record>
+
+    </data>
+</odoo>

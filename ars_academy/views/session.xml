@@ -47,6 +47,7 @@
                             type="object"
                             confirm="Yakin akan cancel data ini??"
                             attrs="{'invisible':[('state', '!=', 'done')]}"
+                            groups="ars_academy.group_manager_ars_academy"
                         />
 
                         <button name="action_draft" 
@@ -54,6 +55,7 @@
                             string="Reset to Draft" 
                             type="object"
                             attrs="{'invisible':[('state', '!=', 'cancel')]}"
+                            groups="ars_academy.group_manager_ars_academy"
                         />
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                     </header>
