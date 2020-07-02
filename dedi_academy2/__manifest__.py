@@ -28,6 +28,7 @@
         'views/menu.xml',
         'views/course.xml',
         'views/course_category.xml',
+        'views/partner.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
