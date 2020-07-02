@@ -1,7 +1,7 @@
 from odoo import api, fields, models
 
 
-class Course(models.Model):
+class CourseCategory(models.Model):
     _name = 'ars.academy.course.category'
     _description = 'Master Data Course Category'
 
